@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleClick() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if (!email || !password) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    var data = {
+        email: email,
+        password: password
+    };
+
+    let user_records = JSON.parse(localStorage.getItem('user_records')) || [];
+    if (user_records.some(user => user.email === email && user.password === password)) {
+        alert('Login successful');
+        let current_user = user_records.find(user => user.email === email && user.password === password);
+        localStorage.setItem('current_user', JSON.stringify(current_user));
+        window.location.href = 'home.html';
+    } else {
+        alert('Invalid credentials');
+    }
+}
+
+    </script>
+</head>
+<body>
+    <div class="full-screen-container">
+    <div class="login-container">
+        <h1 class="login-title">Login</h1>
+        <form class="form">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your Email">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input style="margin-bottom: 20px"  type="password" name="password" id="password" placeholder="Enter your password">
+            </div>
+            <button onclick="handleClick()" type="reset" class="login-button">Login</button>
+            <button type="reset" class="login-button">Reset</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

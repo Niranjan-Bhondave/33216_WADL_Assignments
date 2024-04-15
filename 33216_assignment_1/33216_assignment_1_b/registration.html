@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleClick() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (!name || !email || !password) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    const data = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    let user_records = localStorage.getItem('user_records') ? JSON.parse(localStorage.getItem('user_records')) : [];
+
+    if (user_records.some(user => user.email === email)) {
+        alert('User already exists');
+        return;
+    } else {
+        user_records.push(data);
+        localStorage.setItem('user_records', JSON.stringify(user_records));
+        alert('Registration successful');
+        window.location.href = 'login.html', false; // Adjust the path as needed
+    }
+}
+
+        
+    </script>
+</head>
+<body>
+    <div class="full-screen-container">
+    <div class="login-container">
+        <h1 class="login-title">Register</h1>
+        <form class="form">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="name" name="name" id="name" placeholder="Enter your name">
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your Email">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input style="margin-bottom: 20px"  type="password" name="password" id="password" placeholder="Enter your password">
+            </div>
+            <button onclick="handleClick()" type="reset" class="login-button">Register</button>
+            <button type="reset" class="login-button">Reset</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

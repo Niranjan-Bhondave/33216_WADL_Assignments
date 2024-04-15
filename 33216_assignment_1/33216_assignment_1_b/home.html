@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Home page</title>
+</head>
+<body>
+    <div class="container" style="display: block;">
+        <div class="card">
+            <h2>Home Page</h2>
+            <hr>
+            <h3>Welcome</h3>
+            <h4>Name:</h4>
+            <script>
+            const currentUser = JSON.parse(localStorage.getItem("current_user"));
+            if (currentUser) {
+                document.write(currentUser.name);
+            }
+        </script>
+            <h6>Email:</h6>
+            <script>
+                 const currentUser1 = JSON.parse(localStorage.getItem("current_user"));
+            if (currentUser1) {
+                document.write(currentUser1.email);
+            }
+            </script>
+             <button onclick="logOut()"class="login-button">Log Out</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    function logOut(){
+        localStorage.removeItem("name")
+        localStorage.removeItem("email")
+        window.location.href = "./login.html"
+    }
+</script>
+</html>
